@@ -1,11 +1,12 @@
 # Tech Document of *[Group 2  Web Page](https://www.geos.ed.ac.uk/~s2298227/CGS/)*
 ## 1. Introduction
+>This document can be found online via [GitHub](https://github.com/Annier-z/CGS).
 ### 1.1 Framework
 #### 1.1.1 HTML
 In order to create a cross-platform, multi-device web page as efficiently as possible, this website uses the HTML template from [html5up.net](https://www.html5up.net) by @ajlkn.  
 >Usage under specific [License](https://www.geos.ed.ac.uk/~s2298227/CGS/LICENSE.txt).
 #### 1.1.2 JavaScript
-Along with the HTML template, this website uses many third-part javascript plugins to achieve several helpful functions. All plugins not include in the template are listed below.
+Along with the HTML template, this website uses many third-party javascript plugins to achieve several useful functions. All plugins not included in the template are listed below.
 - [Leaflet](https://leafletjs.com/)
 - [Leaflet.legend](https://github.com/ptma/Leaflet.Legend)
 - [echarts](https://echarts.apache.org/)
@@ -13,7 +14,7 @@ Along with the HTML template, this website uses many third-part javascript plugi
 Thanks to [CloudFlare](https://www.cloudflare.com/) `R2 Bucket`, data can be easily stored and fetched. In this project, all `geoJSON` files are uploaded to `R2 Bucket` for further usage.
 #### 1.1.4 Serverless API
 ##### 1.1.4.1 LikeThis API
-As an important way of representing likeness of this website, a function of thumbs-up is developed with the support of `Worker`
+As an essential way of representing the likeness of this website, a function of thumbs-up is developed with the support of the `Worker`
 feature by [CloudFlare](https://www.cloudflare.com/). All requests are restricted to the [specific domain](https://www.geos.ed.ac.uk).
 ```JavaScript
 //Likethis
@@ -41,7 +42,7 @@ export default {
 };
 ```
 ##### 1.1.4.2 GetData API
-To avoid unauthentic request of cloud storage, this API is developed to get specific data from `R2 Bucket`. All requests are restricted to the [specific domain](https://www.geos.ed.ac.uk).
+This API is developed to get specific data from `R2 Bucket` to avoid the unauthentic request for cloud storage. Therefore, all requests are restricted to the [specific domain](https://www.geos.ed.ac.uk).
 ```JavaScript
 //Get R2 Data
 export default {
@@ -67,10 +68,10 @@ export default {
 }
 ```
 #### 1.1.5 Database
-With the support of [School of GeoScience (UoE)](https://www.geos.ed.ac.uk), this project has the access to the school's domain and Oracle Database.
-We design the database as a part of our project and provide a sample usage on the [website](https://www.geos.ed.ac.uk/~s2298227/CGS/index.html) (Map Layers->Diagrams).
+With the support of [School of GeoScience (UoE)](https://www.geos.ed.ac.uk), this project has access to the school's domain and Oracle Database.
+We designed the database as a part of our project and provided a sample usage on the [website](https://www.geos.ed.ac.uk/~s2298227/CGS/index.html) (Map Layers->Diagrams).
 #### 1.1.6 Python
-This project uses `Python` to interact with the database and runs on school's  `Linux` server.All related modules are listed below.
+This project uses `Python` to interact with the database and runs on the school's  `Linux` server. All related modules are listed below.
 - [cgitb](https://github.com/python/cpython/blob/3.11/Lib/cgitb.py)
 - [cx_Oracle](https://oracle.github.io/python-cx_Oracle/)
 - [jinja2](https://palletsprojects.com/p/jinja/)
@@ -78,17 +79,17 @@ This project uses `Python` to interact with the database and runs on school's  `
 
 ## 2 Detailed Development
 This section includes the key structure of each code file. 
->**For more information, Please refer to the Source Code in Appendix.**
+>**For more information, please refer to the Source Code in Appendix.**
 ### 2.1 Main Page [Source Code](#a1-indexhtml)
 #### 2.1.1 Layout
-The whole page consists of three main parts, namely the navigation bar, the sidebar, and the content body.  
+The whole page consists of three main parts: the navigation bar, the sidebar, and the content body.  
 In the Navigation Bar, **Intro**, **Map Layer**, **Project Report**, **About Us** and **References** are set up according to the project content to provide map layers, a preview and download of the report, an introduction to the project members and relevant references respectively.  
 The Sidebar shows the topic of the project, research content, team members and acknowledgements.  
 The Content Body is made up of several elements, corresponding to the tabs in the navigation bar, which are used to present different aspects of the content without jumping through multiple pages.    
 
-*PS:We have also added the University of Edinburgh icon to the site title.*  
+*PS: We have added the University of Edinburgh icon to the site title.*  
 #### 2.1.2 Tab Switch
-To enable separate content to be displayed without jumping through multiple pages, a function has been written to change the display properties of different elements on this page.
+To enable different content to be displayed without jumping through multiple pages, a function has been written to change the display properties of various elements on this page.
 ```JavaScript
 let i;
 let as = document.querySelectorAll("#tab a")
@@ -104,7 +105,7 @@ for (i = 0; i < as.length; i++) {
 }
 ```
 #### 2.1.3 LikeThis
-As mentioned in [LikeThis API](#1141-likethis-api) the framework section, this page implements a very interesting little feature to help viewers easily express their love for the project.
+As mentioned in [LikeThis API](#1141-likethis-api) the framework section, this page implements an exciting little feature to help viewers quickly express their love for the project.
 ```javascript
 function get_thumb() {
     function get_data(callback) {
@@ -129,7 +130,7 @@ This page contains several iframes for nesting different content.
 ```java
 //Map Layer Content
 <iframe src="layer.html" width="100%" height="700px"></iframe>
-//Diagram of Neibourhoods
+//Diagram of Neighbourhoods
 <iframe src="https://www.geos.ed.ac.uk/~s2298227/cgi-bin/nei.py" width="800px" height="600px"></iframe>
 //Diagram of Species
 <iframe src="https://www.geos.ed.ac.uk/~s2298227/cgi-bin/spec.py" width="800px" height="600px"></iframe>
@@ -139,10 +140,10 @@ This page contains several iframes for nesting different content.
 ### 2.2 Map Layer [Source Code](#a2-layerhtml)
 #### 2.2.1 Layout
 This page mainly shows the entire map layers.  
-The control and selection of the different base and overlay layers is implemented in the top right corner of the map, while the legend and the dynamic scale are shown in the bottom left corner respectively.  
-The base map can be switched and the overlay layer switched on and off by clicking on it.
+The control and selection of the different base and overlay layers are implemented in the top right corner of the map. At the same time, the legend and the dynamic scale are shown in the bottom left corner, respectively.  
+The base map can be switched, and the overlay layer can be switched on and off by clicking on it.
 #### 2.2.2 Load Data
-As stated in the [GetData API]((#1142-getdata-api)) of framework section, all of the overlay layer data is stored in [cloud storage](#113-cloud-storage) and this page needs to implement the loading of the data.
+As stated in the [GetData API]((#1142-getdata-api)) of the framework section, all of the overlay layer data is stored in [cloud storage](#113-cloud-storage) and this page needs to implement the loading of the data.
 ```javascript
 jQuery.getJSON('https://cgsdata.annierzhy.workers.dev/Nei.json', function (data) {
     cur = 'Nei';
@@ -183,10 +184,10 @@ function onEachFeature(feature, layer) {
 ```
 ### 2.3 Diagrams
 #### 2.3.1 HTML
-These files contain the html templates of presenting data in charts.  
+These files contain HTML templates for presenting data in charts.  
 >See [Source Code](#c1-neihtml) for more details.
 #### 2.3.2 Python
-These files implement the function of getting the relevant contents in the database and pass them to the templates.  
+These files implement the function of getting the relevant contents in the database and passing them to the templates.  
 >See [Source Code](#c3-neipy) for more details.
 ### 2.4 Database Scripts
 #### 2.4.1 NEI.sql & SPEC.sql
@@ -223,7 +224,7 @@ Having guidance from all these experts allowed us to provide a successful report
 # Appendix
 ## Appendix A Main Web HTML
 ### A.1 index.html
-```html
+```HTML
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -311,7 +312,7 @@ Having guidance from all these experts allowed us to provide a successful report
                 </header>
                 <span><img src="images/scope.jpg" alt="" width="100%"/></span>
                 <p>Vegetation contained within green space is to improve air quality and alleviate climate change
-                    through carbon sequestration. Green spaces are classified as woodlands, which classifies trees based
+                    Through carbon sequestration. Green spaces are classified as woodlands, which classifies trees based
                     on leaf types and growing status and non-woodlands, which refers to urban vegetation and grassland
                     (Forestry Commission, 2001). The research carried out in this project is based on the Central
                     Scotland Green Network (CSGN) objectives of extending and improving the quality of green spaces
@@ -903,7 +904,7 @@ Having guidance from all these experts allowed us to provide a successful report
 </html>
 ```
 ## Appendix B JavaScripts & CSS
-Key Scripts are refered in the section [Detailed Development](#2-detailed-development).
+Key Scripts are referred to in the section [Detailed Development](#2-detailed-development).
 - For Template-related and third-party plug-ins
 >See [Source Code](https://www.geos.ed.ac.uk/~s2298227/CGS/assets/) for more details.
 
@@ -1142,7 +1143,7 @@ FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 TRAILING NULLCOLS
 (ID,TYPENAME,TOTALC,NEI)
 ```
-## Appendix D Manual Pages
+## Appendix E Manual Pages
 >See [Source Code](https://www.geos.ed.ac.uk/~s2298227/CGS/manual/) for more details.
 
 
